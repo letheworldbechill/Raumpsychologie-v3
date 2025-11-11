@@ -108,3 +108,13 @@ export function showSaveBlink() {
 
 /* ---------- INITIAL START ---------- */
 showStartOverlay();
+/* ---------- HAMBURGER NAV ---------- */
+const menuBtn = document.getElementById("menu-toggle");
+const navOverlay = document.getElementById("nav-overlay");
+const navClose = document.getElementById("nav-close");
+
+menuBtn.addEventListener("click", () => (navOverlay.hidden = false));
+navClose.addEventListener("click", () => (navOverlay.hidden = true));
+navOverlay.addEventListener("click", (e) => {
+  if (e.target === navOverlay) navOverlay.hidden = true;
+});
