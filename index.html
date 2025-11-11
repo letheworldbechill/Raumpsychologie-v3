@@ -11,24 +11,12 @@
 </head>
 
 <body>
-  <!-- ---------- HEADER ---------- -->
+  <!-- ========== HEADER ========== -->
   <header class="app-header">
     <h1>🌿 Raumpsychologie v3</h1>
 
-    <nav id="top-nav" class="top-nav">
-      <button data-route="/intro" data-i18n="nav_intro">Intro</button>
-      <button data-route="/wohnung" data-i18n="nav_wohnung">Wohnung</button>
-      <button data-route="/raumscan" data-i18n="nav_raumscan">RaumScan</button>
-      <button data-route="/resonanz" data-i18n="nav_resonanz">Resonanz</button>
-      <button data-route="/bindung" data-i18n="nav_bindung">Bindung</button>
-      <button data-route="/restladung" data-i18n="nav_restladung">Restladung</button>
-      <button data-route="/minireset" data-i18n="nav_minireset">Mini-Reset</button>
-      <button data-route="/musterarchiv" data-i18n="nav_musterarchiv">Archiv</button>
-      <button data-route="/rahmung" data-i18n="nav_rahmung">Rahmung</button>
-      <button data-route="/diplomatie" title="Carnegie-Exit PDF/Print" data-i18n="nav_diplomatie">Diplomatie</button>
-    </nav>
-
     <div class="toolbar">
+      <button id="menu-toggle" class="menu-btn" title="Menü">☰</button>
       <select id="lang" title="Sprache">
         <option value="de">DE</option>
         <option value="en">EN</option>
@@ -39,27 +27,59 @@
       <input type="file" id="file-import" accept="application/json" style="display:none" />
     </div>
 
-    <!-- 💾 Auto-Save Blink (ASBA) -->
     <div id="save-blink" class="save-blink" title="Gespeichert">💾</div>
   </header>
 
-  <!-- ---------- MAIN VIEW ---------- -->
+  <!-- ========== MAIN VIEW ========== -->
   <main id="view" class="view"></main>
 
-  <!-- ---------- FOOTER ---------- -->
+  <!-- ========== FLOW FOOTER ========== -->
+  <footer class="flow-nav">
+    <button id="prev" class="flow-btn" aria-label="Zurück">◀</button>
+    <div class="flow-progress" aria-label="Fortschritt">
+      <div id="progress-bar" class="progress-bar"></div>
+      <div class="steps" aria-hidden="true">
+        <div class="step"></div><div class="step"></div><div class="step"></div><div class="step"></div><div class="step"></div>
+        <div class="step"></div><div class="step"></div><div class="step"></div><div class="step"></div><div class="step"></div>
+      </div>
+    </div>
+    <button id="next" class="flow-btn" aria-label="Weiter">▶</button>
+  </footer>
+
+  <!-- ========== HAMBURGER MENU OVERLAY ========== -->
+  <nav id="nav-overlay" class="nav-overlay" hidden>
+    <div class="nav-drawer">
+      <div class="nav-header">
+        <h2>Navigation</h2>
+        <button id="nav-close" class="nav-close" title="Schließen">×</button>
+      </div>
+      <ul class="nav-main">
+        <li><button data-route="/intro" data-i18n="nav_intro">Intro</button></li>
+        <li><button data-route="/wohnung" data-i18n="nav_wohnung">Wohnung</button></li>
+        <li><button data-route="/raumscan" data-i18n="nav_raumscan">RaumScan</button></li>
+        <li><button data-route="/resonanz" data-i18n="nav_resonanz">Resonanz</button></li>
+        <li><button data-route="/bindung" data-i18n="nav_bindung">Bindung</button></li>
+        <li><button data-route="/restladung" data-i18n="nav_restladung">Restladung</button></li>
+        <li><button data-route="/minireset" data-i18n="nav_minireset">Mini-Reset</button></li>
+        <li><button data-route="/musterarchiv" data-i18n="nav_musterarchiv">Archiv</button></li>
+        <li><button data-route="/rahmung" data-i18n="nav_rahmung">Rahmung</button></li>
+        <li><button data-route="/diplomatie" data-i18n="nav_diplomatie">Diplomatie</button></li>
+      </ul>
+
+      <hr class="nav-divider" />
+
+      <div class="nav-settings">
+        <h3>Einstellungen</h3>
+        <button data-route="/settings">⚙️ Einstellungen öffnen</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== FOOTER INFO ========== -->
   <footer class="app-footer">
     <small>Offline-fähig · Keine Tracker · v3</small>
   </footer>
 
-  <!-- ---------- FLOATING SAVE INDICATOR ---------- -->
-  <div id="save-indicator" class="save-indicator" hidden>
-    💾 Gespeichert
-  </div>
-
-  <!-- ---------- START OVERLAY (automatisch von app.js) ---------- -->
-  <!-- Wird beim ersten App-Start per JS erzeugt -->
-
-  <!-- ---------- CORE SCRIPT ---------- -->
   <script type="module" src="app.js"></script>
 </body>
-      </html>
+              </html>
