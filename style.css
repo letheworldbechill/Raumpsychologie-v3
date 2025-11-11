@@ -1,0 +1,332 @@
+/* =======================================
+   🌿 Raumpsychologie v3 – styles.css
+   ======================================= */
+
+/* ---------- COLOR THEMES ---------- */
+:root {
+  --bg: #0b0c0e;
+  --panel: #14161a;
+  --text: #e7eaee;
+  --muted: #a8b0ba;
+  --accent: #6dd3a0;
+  --outline: #23252b;
+  --ok: #55d187;
+  --warn: #f0c75e;
+  --tension: #ff9b55;
+  --alert: #ff5c5c;
+  --radius: .6rem;
+  --shadow: rgba(0,0,0,.3);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fa;
+    --panel: #ffffff;
+    --text: #0c1014;
+    --muted: #5a6672;
+    --accent: #2fa86e;
+    --outline: #e6e8ec;
+    --shadow: rgba(0,0,0,.1);
+  }
+}
+
+/* ---------- RESET & BASE ---------- */
+html, body { height: 100%; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* ---------- HEADER ---------- */
+.app-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--panel);
+  border-bottom: 1px solid var(--outline);
+  display: flex; align-items: center; flex-wrap: wrap;
+  padding: .75rem 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.app-header h1 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar { margin-left:auto; display:flex; gap:.5rem; align-items:center; }
+.toolbar button, select, .cta {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius);
+  padding: .45rem .7rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.toolbar button:hover, .cta:hover, select:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- MAIN VIEW ---------- */
+.view {
+  max-width: 960px;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+  min-height: 70vh;
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+/* ---------- PANEL ---------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--outline);
+  border-radius: .9rem;
+  padding: 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.panel h2, .panel h3 { margin-top: 0; }
+
+/* ---------- GRID ---------- */
+.grid { display:grid; gap:1rem; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+/* ---------- TEXT ELEMENTS ---------- */
+.note { color: var(--muted); font-size:.9rem; }
+.big { font-size:1.1rem; }
+.center { text-align:center; }
+
+/* ---------- FORM ELEMENTS ---------- */
+.kv label { display:block; color: var(--muted); font-size:.9rem; margin-bottom:.25rem; }
+input[type="text"], textarea, select, input[type="range"] {
+  width: 100%;
+  background: color-mix(in oklab, var(--panel) 80%, black 20%);
+  color: var(--text);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius);
+  padding: .6rem .7rem;
+}
+
+/* ---------- LIST / ITEMS ---------- */
+.list { display:grid; gap:.5rem; }
+.item {
+  padding:.6rem .7rem;
+  border:1px solid var(--outline);
+  border-radius:.6rem;
+  background: color-mix(in oklab, var(--panel) 85%, black 15%);
+}
+hr.s { border:none; border-top:1px dashed var(--outline); margin:1rem 0; }
+
+/* ---------- BADGES ---------- */
+.pill {
+  padding:.15rem .5rem;
+  border-radius:.45rem;
+  border:1px solid var(--outline);
+  font-size:.8rem;
+}
+.pill.green { background: color-mix(in oklab, #55d187 20%, var(--panel)); }
+.pill.yellow{ background: color-mix(in oklab, #f0c75e 20%, var(--panel)); }
+.pill.orange{ background: color-mix(in oklab, #ff9b55 20%, var(--panel)); }
+.pill.red   { background: color-mix(in oklab, #ff5c5c 20%, var(--panel)); }
+
+/* ---------- MODAL ---------- */
+.modal-backdrop {
+  position: fixed; inset:0;
+  background: rgba(0,0,0,.6);
+  display:none; align-items:center; justify-content:center;
+  z-index:100;
+}
+.modal { width:96%; max-width:720px; }
+.modal-backdrop.show { display:flex; }
+
+/* ---------- PRINT VIEW ---------- */
+.print-wrap {
+  max-width: 840px; margin: 2rem auto; padding: 1.2rem;
+  background: white; color: #111;
+}
+.print-wrap h1 { margin-top: 0; }
+.print-step { border-left: 3px solid #2fa86e; padding-left:.8rem; margin:.6rem 0; }
+
+/* ---------- FLOW MODE ---------- */
+.flow {
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  animation: fadeSlideIn .45s ease forwards;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeSlideOut {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Flow Controls */
+.flow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: sticky;
+  bottom: 0;
+  background: var(--panel);
+  border-top: 1px solid var(--outline);
+  padding: .6rem 1rem .8rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px var(--shadow);
+  z-index: 99;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: .6rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.nav-btn:hover:not(:disabled) { transform: scale(1.05); }
+.nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Progress Steps */
+.flow-progress { flex: 1; text-align: center; max-width: 520px; }
+.flow-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: .4rem;
+}
+.step {
+  width: 1.8rem; height: 1.8rem;
+  font-size: 1.1rem;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  background: color-mix(in oklab, var(--panel) 70%, var(--outline) 30%);
+  color: var(--muted);
+  cursor:pointer;
+  transition: all .25s ease;
+}
+.step.active {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+.step:hover { transform: scale(1.1); color: var(--accent); }
+
+/* Progress Bar */
+.progress-track {
+  width: 100%; height: .4rem;
+  background: var(--outline);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#progress-bar {
+  height: 100%; width: 0%;
+  background: var(--accent);
+  transition: width .4s ease;
+}
+
+/* ---------- START OVERLAY ---------- */
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  z-index: 200;
+  animation: overlayFadeIn 1s ease forwards;
+}
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.start-overlay.fade-out {
+  animation: overlayFadeOut .6s ease forwards;
+}
+@keyframes overlayFadeOut {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: scale(.98); }
+}
+.start-card {
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--outline);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 14px var(--shadow);
+  animation: fadeSlideIn .8s ease;
+}
+.start-card h1 { margin: 0 0 .3rem; font-size: 1.3rem; color: var(--accent); }
+.start-card p { margin: 0 0 1rem; font-weight: 500; color: var(--muted); }
+.start-card .cta { font-size: 1.05rem; margin-bottom: .6rem; }
+.start-card small { display:block; color: var(--muted); }
+
+/* ---------- SAVE INDICATOR ---------- */
+.save-indicator {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: .5rem .9rem;
+  border-radius: .6rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .4s ease;
+  z-index: 120;
+  pointer-events: none;
+}
+.save-indicator.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- AUTO-SAVE BLINK ANIMATION ---------- */
+.save-blink {
+  position: absolute;
+  right: 1rem;
+  top: .9rem;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity .25s ease;
+  color: var(--accent);
+  pointer-events: none;
+}
+.save-blink.active {
+  opacity: 1;
+  animation: blinkFade .8s ease;
+}
+@keyframes blinkFade {
+  0% { opacity: 0; transform: scale(.9); }
+  25% { opacity: 1; transform: scale(1.2); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(.95); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  .flow-steps {
+    justify-content: center;
+    gap: .5rem;
+    overflow-x: auto;
+  }
+  .step {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+  }
+  .toolbar { flex-wrap: wrap; gap:.3rem; }
+  }
