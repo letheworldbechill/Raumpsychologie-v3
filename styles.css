@@ -330,3 +330,178 @@ hr.s { border:none; border-top:1px dashed var(--outline); margin:1rem 0; }
   }
   .toolbar { flex-wrap: wrap; gap:.3rem; }
   }
+/* ---------- HAMBURGER MENU OVERLAY ---------- */
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform .2s ease, color .2s ease;
+}
+.menu-btn:hover { transform: scale(1.1); color: var(--accent); }
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 200;
+  animation: fadeIn .3s ease;
+}
+.nav-drawer {
+  width: 280px;
+  max-width: 90%;
+  background: var(--panel);
+  color: var(--text);
+  height: 100%;
+  box-shadow: -4px 0 12px rgba(0,0,0,.3);
+  transform: translateX(100%);
+  animation: slideIn .3s forwards ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.2rem;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-header h2 { margin: 0; font-size: 1.1rem; color: var(--accent); }
+.nav-close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.nav-main {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  flex: 1;
+  display: grid;
+  gap: .5rem;
+}
+.nav-main button {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--outline);
+  border-radius: .5rem;
+  color: var(--text);
+  padding: .5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.nav-main button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.nav-divider {
+  border: none;
+  border-top: 1px solid var(--outline);
+  margin: 1rem 0 .6rem;
+}
+.nav-settings {
+  background: color-mix(in oklab, var(--panel) 85%, var(--outline));
+  padding: .8rem;
+  border-radius: .5rem;
+}
+.nav-settings h3 {
+  margin-top: 0;
+  font-size: .95rem;
+  color: var(--muted);
+}
+.nav-settings button {
+  width: 100%;
+  border: 1px solid var(--outline);
+  background: transparent;
+  color: var(--text);
+  border-radius: .4rem;
+  padding: .4rem .6rem;
+  cursor: pointer;
+  transition: .2s;
+}
+.nav-settings button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Animations */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- FLOW FOOTER ---------- */
+.flow-nav {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--panel);
+  border-top: 1px solid var(--outline);
+  padding: 0.5rem 1rem;
+  z-index: 40;
+}
+.flow-btn {
+  background: transparent;
+  border: 1px solid var(--outline);
+  color: var(--text);
+  font-size: 1.1rem;
+  border-radius: .6rem;
+  padding: .4rem .8rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.flow-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.flow-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.flow-progress {
+  flex: 1;
+  position: relative;
+  height: 6px;
+  background: var(--outline);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width .4s ease;
+}
+.steps {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.step {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--outline);
+  transition: all .3s ease;
+  pointer-events: all;
+  cursor: pointer;
+}
+.step.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
